@@ -1,0 +1,132 @@
+@import "@fontsource/vazirmatn/arabic-400.css";
+@import "@fontsource/vazirmatn/arabic-500.css";
+@import "@fontsource/vazirmatn/arabic-700.css";
+@import "@fontsource/vazirmatn/latin-400.css";
+@import "@fontsource/vazirmatn/latin-500.css";
+@import "@fontsource/vazirmatn/latin-700.css";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #0b0b0d;
+  --color-shell: #131315;
+  --color-card: #18181c;
+  --color-raised: #222228;
+  --color-line: #26262b;
+  --color-fg: #f4f4f5;
+  --color-muted: #85858e;
+  --color-accent: #2dd4bf;
+  --color-accent-ink: #042f2e;
+  --color-good: #3dd68c;
+  --color-good-ink: #052e16;
+  --color-warn: #e6b450;
+  --color-warn-ink: #2a1d05;
+  --color-bad: #f07178;
+  --color-bad-ink: #2a0b0e;
+  --color-track: #2c2c33;
+}
+
+@layer base {
+  [data-theme="light"] {
+    --color-bg: #e7e7eb;
+    --color-shell: #f7f7f8;
+    --color-card: #ffffff;
+    --color-raised: #ececf1;
+    --color-line: #dddde4;
+    --color-fg: #141418;
+    --color-muted: #6a6a74;
+    --color-accent: #0f766e;
+    --color-accent-ink: #f0fdfa;
+    --color-good: #047857;
+    --color-good-ink: #ecfdf5;
+    --color-warn: #b45309;
+    --color-warn-ink: #fffbeb;
+    --color-bad: #be123c;
+    --color-bad-ink: #fff1f2;
+    --color-track: #e6e6ec;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html[data-theme="light"] {
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}
+
+.kpi-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 860px) {
+  .kpi-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.split {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .split {
+    grid-template-columns: minmax(0, 3fr) minmax(12.5rem, 1fr);
+  }
+}
+
+.dock {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 30;
+  border-top: 1px solid var(--color-line);
+  background: var(--color-shell);
+  padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes mt2r-pulse {
+  50% { transform: scale(1.03); }
+}
+
+.pulse {
+  animation: mt2r-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
